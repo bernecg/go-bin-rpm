@@ -328,6 +328,9 @@ func (p *Package) GenerateSpecFile(sourceDir string) (string, error) {
 	if err != nil {
 		return "", errors.WithStack(err)
 	}
+	if p.AutoReqProv != "" {
+		spec += fmt.Sprintf("AutoReqProv: %s\n", p.AutoReqProv)
+	}
 	spec += fmt.Sprintf("%s\n", files)
 	spec += fmt.Sprintf("\n%%clean\n")
 	shortcutInstall := "\n"
